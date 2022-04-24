@@ -68,7 +68,7 @@ class Books extends Component {
     }
 
     getBooksPage = (offset, nextPageOffset) => {
-        return this.props.books.map((term) => {
+        return this.props.books.map((term,index) => {
             return (
                 <BookTerm key={term.id} term={term} onDelete={this.props.onDelete} onEdit={this.props.onEdit}/>
             );
