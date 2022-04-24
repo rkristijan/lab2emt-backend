@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://library-lab2emt-frontend.herokuapp.com/")
 @RequestMapping({"/","/books"})
 public class BookRestController {
 
@@ -33,14 +33,14 @@ public class BookRestController {
     }
 
     @GetMapping("/add")
-    //@PreAuthorize("hasRole('LIBRARIAN')")
+    @PreAuthorize("hasRole('LIBRARIAN')")
     public ResponseEntity<Book> save(@RequestBody BookDto bookDto){
         return this.bookService.save(bookDto).map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @PutMapping("/edit/{id}")
-    //@PreAuthorize("hasRole('LIBRARIAN')")
+    @PreAuthorize("hasRole('LIBRARIAN')")
     public ResponseEntity<Book> save(@PathVariable Long id, @RequestBody BookDto bookDto){
         return this.bookService.edit(id, bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
@@ -55,7 +55,7 @@ public class BookRestController {
     }
 
     @DeleteMapping("/delete/{id}")
-    //@PreAuthorize("hasRole('LIBRARIAN')")
+    @PreAuthorize("hasRole('LIBRARIAN')")
     public ResponseEntity deleteById(@PathVariable Long id){
         this.bookService.deleteById(id);
         if (this.bookService.findById(id).isEmpty())
