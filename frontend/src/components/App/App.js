@@ -1,4 +1,3 @@
-import logo from '../../logo.svg';
 import './App.css';
 import React from "react";
 import {Component} from "react";
@@ -11,7 +10,6 @@ import {Navigate} from "react-router-dom"
 import Header from "../Header/header";
 import AddBook from "../Books/AddBook/addBook";
 import BookEdit from "../Books/BookEdit/bookEdit";
-import MarkBook from "../Books/MarkBook/MarkBook"
 class App extends Component {
 
     constructor(props) {
