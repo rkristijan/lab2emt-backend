@@ -82,6 +82,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Optional<Book> mark(Long id, BookDto bookDto) {
+        Book book = this.bookRepository.findById(id).orElseThrow(() -> new BookNotFound(id));
+        book.setAvailableCopies(bookDto.getAvailableCopies()-1);
+        book.setCategory(bookDto.getCategory());
+        book.setName(bookDto.getName());
+        Author author1 = this.authorRepository.findById(bookDto.getAuthor()).orElseThrow(() -> new AuthorNotFound(bookDto.getAuthor()));
+        book.setAuthor(author1);
+        this.bookRepository.save(book);
+
+        return Optional.of(book);
+    }
+
+    @Override
     public Optional<Book> edit(Long id, BookDto bookDto) {
         Book book = this.bookRepository.findById(id).orElseThrow(() -> new BookNotFound(id));
         Author author1 = this.authorRepository.findById(bookDto.getAuthor()).orElseThrow(() -> new AuthorNotFound(bookDto.getAuthor()));

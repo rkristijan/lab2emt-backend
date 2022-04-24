@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 
 const BookTerm = (props) => {
 
+
     const [count,setCount] = useState(props.term.availableCopies);
     let markAsTaken= () => setCount(count-1);
 

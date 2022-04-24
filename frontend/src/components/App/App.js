@@ -11,7 +11,7 @@ import {Navigate} from "react-router-dom"
 import Header from "../Header/header";
 import AddBook from "../Books/AddBook/addBook";
 import BookEdit from "../Books/BookEdit/bookEdit";
-
+import MarkBook from "../Books/MarkBook/MarkBook"
 class App extends Component {
 
     constructor(props) {
@@ -109,7 +109,7 @@ class App extends Component {
         LibraryService.editBook(id, name, category, author, availableCopies)
             .then(() => {
                 this.loadBooks();
-            })
+            });
     }
 }
 
