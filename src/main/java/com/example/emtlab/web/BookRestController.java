@@ -4,6 +4,7 @@ import com.example.emtlab.model.Book;
 import com.example.emtlab.model.dto.BookDto;
 import com.example.emtlab.service.BookService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,12 +33,14 @@ public class BookRestController {
     }
 
     @GetMapping("/add")
+    @PreAuthorize("hasRole('LIBRARIAN')")
     public ResponseEntity<Book> save(@RequestBody BookDto bookDto){
         return this.bookService.save(bookDto).map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @PutMapping("/edit/{id}")
+    @PreAuthorize("hasRole('LIBRARIAN')")
     public ResponseEntity<Book> save(@PathVariable Long id, @RequestBody BookDto bookDto){
         return this.bookService.edit(id, bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
@@ -45,6 +48,7 @@ public class BookRestController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('LIBRARIAN')")
     public ResponseEntity deleteById(@PathVariable Long id){
         this.bookService.deleteById(id);
         if (this.bookService.findById(id).isEmpty())

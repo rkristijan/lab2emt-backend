@@ -1,6 +1,6 @@
 import React from "react";
 
-const books = (props) => {
+const authors = (props) => {
     return (
         <div className={"container mm-4 mt-5"}>
             <div className={"row"}>
@@ -9,19 +9,17 @@ const books = (props) => {
                         <thead>
                         <tr>
                             <th scope={"col"}>Name</th>
-                            <th scope={"col"}>Category</th>
-                            <th scope={"col"}>Author</th>
-                            <th scope={"col"}>Available Copies</th>
+                            <th scope={"col"}>Surname</th>
+                            <th scope={"col"}>Country</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {props.books.map((term) => {
+                        {props.authors.map((term) => {
                             return (
-                                <tr>
+                                <tr key={term.id}>
                                     <td>{term.name}</td>
-                                    <td>{term.category}</td>
-                                    <td>{term.author.name +" "+term.author.surname}</td>
-                                    <td>{term.availableCopies}</td>
+                                    <td>{term.surname}</td>
+                                    <td>{term.country.name}</td>
                                 </tr>
                             );
                         })}
@@ -33,4 +31,4 @@ const books = (props) => {
     );
 }
 
-export default books;
+export default authors;

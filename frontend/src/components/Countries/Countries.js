@@ -15,7 +15,7 @@ const countries = (props) => {
                         <tbody>
                         {props.countries.map((term) => {
                             return (
-                                <tr>
+                                <tr key={term.id}>
                                     <td>{term.name}</td>
                                     <td>{term.continent}</td>
                                 </tr>
